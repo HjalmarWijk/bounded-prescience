@@ -5,7 +5,6 @@ prescience/.DS_Store
 prescience/labelling/.idea
 prescience/.idea/
 models/
-rl_invariants.egg-info/
-atari_verifier.egg-info/
+prescience.egg-info/
 results/
 
