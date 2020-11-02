@@ -1,0 +1,11 @@
+environment_loop/
+__pycache__/
+prescience/.DS_Store
+.DS_Store
+prescience/labelling/.idea
+prescience/.idea/
+models/
+rl_invariants.egg-info/
+atari_verifier.egg-info/
+results/
+

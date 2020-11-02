@@ -1,4 +1,0 @@
-Environment,Agent,Property,Max Frames,Lookahead,0 noops
-Freeway,A3C,hit,108000,0,1451
-Freeway,no-ops,hit,108000,0,None
-Freeway,A3C,Reward,108000,0,0.0
