@@ -1,9 +1,9 @@
-readarray -t games < <(python get_gamelist.py|head -n 1)
+readarray -t games < <(python get_gamelist.py)
 if [ -z "$1" ]; then path=../models; else path="$1"; fi
 pretrained_chainer=("DQN" "Rainbow" "A3C" "IQN")
 for alg in "${pretrained_chainer[@]}"; do
         for game in "${games[@]}"; do
-                python model_tools/pretrain_chainer/download_pretrained.py --alg $alg  --env $game
+                python download_pretrained.py --alg $alg  --env $game
         done
 done
 mkdir -p $path/chainer
