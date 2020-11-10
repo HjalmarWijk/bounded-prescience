@@ -50,14 +50,15 @@ def main(argv):
             )
         config.gpu_options.allow_growth=True
         with tf.Graph().as_default() as graph, tf.Session(config=config) as sess:
-            env = get_wrapped(FLAGS.env+'NoFrameskip-v4',FLAGS.method,FLAGS.max_frames)
+            env = get_wrapped(FLAGS.env+'NoFrameskip-v4',FLAGS.method,FLAGS.prop)
 
             nA = env.action_space.n
             X_t = tf.placeholder(tf.float32, [None] + list(env.observation_space.shape))
             T = import_model(m,X_t,X_t)
             policy = T(m.layers[-1]['name'])
             order = tf.argsort(-policy,axis=-1)
-            action_function=lambda x: sess.run([order],feed_dict={X_t:x[None]})
+            action_function=lambda x: sess.run([order],feed_dict={X_t:x[None]})[0][0]
+            print(action_function(env.reset()))
             violation_list, noop_violation_list, reward_list = check_noops(FLAGS.env+'NoFrameskip-v4',FLAGS.method,FLAGS.prop,action_function,max_frames = FLAGS.max_frames, max_noops = FLAGS.max_noops,render = FLAGS.render,min_noops = FLAGS.min_noops,shield=FLAGS.lookahead,verbose=FLAGS.verbose,demand_full_safety=FLAGS.stop_at_violation,record=FLAGS.record)
     else:
         from prescience.agents import AtariAgent
