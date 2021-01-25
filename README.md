@@ -1,5 +1,5 @@
 # bounded-prescience
-This repo contains code for the paper Shielding Atari Games with Bounded Prescience by Mirco Giacobbe, Hosein Hasanbeig, Hjalmar Wijk and Daniel Kroening. In addition to replicating the experiments in the paper and the bounded prescience shield, the repo allows the creation of property-labelled versions of the standard Atari gym environments which can expose safety information for other agents and policies.
+This repo contains code for the paper Shielding Atari Games with Bounded Prescience (https://arxiv.org/abs/2101.08153) by Mirco Giacobbe, Hosein Hasanbeig, Hjalmar Wijk and Daniel Kroening. In addition to replicating the experiments in the paper and the bounded prescience shield, the repo allows the creation of property-labelled versions of the standard Atari gym environments which can expose safety information for other agents and policies.
 ## Installation
 The prescience package needs to be installed through pip. 
 ## Properties
