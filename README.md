@@ -1,8 +1,8 @@
 # bounded-prescience
 This repo contains code for the paper Shielding Atari Games with Bounded Prescience, by Mirco Giacobbe, Hosein Hasanbeig, Hjalmar Wijk and Daniel Kroening. In addition to replicating the experiments in the paper and the bounded prescience shield, the repo allows the creation of property-labelled versions of the standard Atari gym environments which can easily expose safety informaiton for other agents and policies.
-##Installation
+## Installation
 Simply install the package using pip
-##Properties
+## Properties
 | Game         | Property       | Description                                  | Classification |
 |--------------|----------------|----------------------------------------------|----------------|
 | Alien        | death          | Losing a life                                |                |
@@ -50,12 +50,12 @@ To test properties use the test\_property.py script with flags --env [Game name]
 
 This simulates a random agent and logs violations. To evaluate properties with human play, use --human flag (requires pygame). 
 
-##Verification
+## Verification
 
 To check properties for the 9 pre-trained agents evaluated in the paper under a variety os settings see the script check\_noops.py 
 The scripts chainer\_no\_shield.sh and atari\_zoo\_no\_shield.sh run all the agents for all properties. Note that Atari Zoo agents need Tensorflow 1 (and AtariZoo) installed, while ChainerRL agents needs Tensorflow 2 and ChainerRL. 
 
-##Shielding
+## Shielding
 
 To check properties using prescience shielding use the --lookahead flag for check\_noops.py
 The shield scripts run this check for all algorithms, properties and shield depths up to 5. 
