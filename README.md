@@ -1,7 +1,7 @@
 # bounded-prescience
-This repo contains code for the paper Shielding Atari Games with Bounded Prescience, by Mirco Giacobbe, Hosein Hasanbeig, Hjalmar Wijk and Daniel Kroening. In addition to replicating the experiments in the paper and the bounded prescience shield, the repo allows the creation of property-labelled versions of the standard Atari gym environments which can easily expose safety informaiton for other agents and policies.
+This repo contains code for the paper Shielding Atari Games with Bounded Prescience by Mirco Giacobbe, Hosein Hasanbeig, Hjalmar Wijk and Daniel Kroening. In addition to replicating the experiments in the paper and the bounded prescience shield, the repo allows the creation of property-labelled versions of the standard Atari gym environments which can expose safety information for other agents and policies.
 ## Installation
-Simply install the package using pip
+The prescience package needs to be installed through pip. 
 ## Properties
 | Game         | Property       | Description                                  | Classification |
 |--------------|----------------|----------------------------------------------|----------------|
@@ -52,7 +52,7 @@ This simulates a random agent and logs violations. To evaluate properties with h
 
 ## Verification
 
-To check properties for the 9 pre-trained agents evaluated in the paper under a variety os settings see the script check\_noops.py 
+To check properties for the 9 pre-trained agents evaluated in the paper under a variety of settings see the script check\_noops.py 
 The scripts chainer\_no\_shield.sh and atari\_zoo\_no\_shield.sh run all the agents for all properties. Note that Atari Zoo agents need Tensorflow 1 (and AtariZoo) installed, while ChainerRL agents needs Tensorflow 2 and ChainerRL. 
 
 ## Shielding
