@@ -1,4 +1,4 @@
-from atver.labelling.properties import prop_map
+from prescience.labelling.properties import prop_map
 import sys
 
 if __name__ == '__main__':

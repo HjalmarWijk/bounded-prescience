@@ -1,6 +1,6 @@
 import gym
 import numpy as np
-from atver.labelling import Labeller
+from prescience.labelling import Labeller
 from collections import deque
 
 

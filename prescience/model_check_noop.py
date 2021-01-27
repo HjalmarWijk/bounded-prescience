@@ -52,7 +52,8 @@ class ModelChecker():
         self.noops = noops
         self.verbose = verbose
         self.max_frames=max_frames
-
+        self.next_action = 0
+        self.stored_action = None
         obs = self.env.reset()
         action_list = self.get_order(obs)
         state = self.env.save()
@@ -62,10 +63,17 @@ class ModelChecker():
         entry = self.history.pop(0)
         self.tot_reward += entry.reward
     def get_action(self):
+        if self.next_action != 0:
+            self.next_action -= 1
+            return self.stored_action
         if self.frame <= self.noops:
+            self.stored_action = 0
+            self.next_action = 3
             return 0
         else:
             current = self.history[-1]
+            self.stored_action = current.action_list[current.index]
+            self.next_action = 3
             return current.action_list[current.index]
     def evaluate_step(self):
         if self.render:

@@ -1,6 +1,6 @@
 from absl import app
 from absl import flags
-from atver.labelling import get_property
+from prescience.labelling import get_property
 import gym
 
 flags.DEFINE_string('env', 'FreewayNoFrameskip-v4', 'Env string')
