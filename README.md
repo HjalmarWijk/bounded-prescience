@@ -61,8 +61,9 @@ This simulates a random agent and logs violations. To evaluate properties with h
 
 ## Verification
 
-To check properties for the 9 pre-trained agents evaluated in the paper under a variety of settings see the script check\_noops.py 
-The scripts chainer\_no\_shield.sh and atari\_zoo\_no\_shield.sh run all the agents for all properties. Note that Atari Zoo agents need Tensorflow 1 (and AtariZoo) installed, while ChainerRL agents needs Tensorflow 2 and ChainerRL. 
+To check properties for the 9 pre-trained agents evaluated in the paper under a variety of settings see the script check\_noops.py
+To run the ChainerRL agents you first need to download them by running download\_models.py (the Atari Zoo agents download dynamically).
+The scripts chainer\_no\_shield.sh and atari\_zoo\_no\_shield.sh run all the agents for all propertiesm and write results as a csv in the results folder. Note that Atari Zoo agents need Tensorflow 1 (and AtariZoo) installed, while ChainerRL agents needs Tensorflow 2 and ChainerRL. 
 
 ## Shielding
 
