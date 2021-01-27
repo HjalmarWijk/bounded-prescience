@@ -38,7 +38,7 @@ def check_noops(env_str,method_str,prop_str,action_function,max_noops=29,render 
 
 
 class ModelChecker():
-    def __init__(self,action_function,env,actions,noops,shield=0,render=False,verbose=False,max_frames=10000):
+    def __init__(self,action_function,env,actions,noops,shield=0,render=False,verbose=False,max_frames=10000,action_repeat=0):
         self.render = render
         self.get_order = action_function
         self.env = env
@@ -54,6 +54,7 @@ class ModelChecker():
         self.max_frames=max_frames
         self.next_action = 0
         self.stored_action = None
+        self.action_repeat = action_repeat
         obs = self.env.reset()
         action_list = self.get_order(obs)
         state = self.env.save()
@@ -68,12 +69,12 @@ class ModelChecker():
             return self.stored_action
         if self.frame <= self.noops:
             self.stored_action = 0
-            self.next_action = 3
+            self.next_action = self.action_repeat
             return 0
         else:
             current = self.history[-1]
             self.stored_action = current.action_list[current.index]
-            self.next_action = 3
+            self.next_action = self.action_repeat
             return current.action_list[current.index]
     def evaluate_step(self):
         if self.render:
