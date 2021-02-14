@@ -68,4 +68,21 @@ The scripts chainer\_no\_shield.sh and atari\_zoo\_no\_shield.sh run all the age
 ## Shielding
 
 To check properties using prescience shielding use the --lookahead flag for check\_noops.py
-The shield scripts run this check for all algorithms, properties and shield depths up to 5. 
+The shield scripts run this check for all algorithms, properties and shield depths up to 5.
+
+## Reference
+Please use this bibtex entry if you want to cite this repository in your publication:
+
+```
+@misc{bounded_prescience_repo,
+  author = {Mirco Giacobbe, Mohammadhosein Hasanbeig, Daniel Kroening, and Hjalmar Wijk},
+  title = {Shielding Atari Games with Bounded Prescience},
+  year = {2020},
+  publisher = {GitHub},
+  journal = {GitHub repository},
+  howpublished = {\url{https://github.com/HjalmarWijk/bounded-prescience}},
+}
+```
+
+## License
+This project is licensed under the terms of the [BSD-3-Clause](/LICENSE)
