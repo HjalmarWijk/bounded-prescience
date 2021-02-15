@@ -76,7 +76,7 @@ Please use this bibtex entry if you want to cite this repository in your publica
 ```
 @misc{bounded_prescience_repo,
   author = {Mirco Giacobbe, Mohammadhosein Hasanbeig, Daniel Kroening, and Hjalmar Wijk},
-  title = {Shielding Atari Games with Bounded Prescience},
+  title = {Shielding Atari Games with Bounded Prescience Code Repository},
   year = {2020},
   publisher = {GitHub},
   journal = {GitHub repository},
