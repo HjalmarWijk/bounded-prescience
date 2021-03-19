@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name='bounded-prescience',
-    version='0.0.1',
+    version='0.0.3',
     author="Hjalmar Wijk, Hosein Hasanbeig, Mirco Giacobbe, Daniel Kroening",
     author_email="hjalmar.wijk@gmail.com, hosein.hasanbeig@icloud.com",
     keywords='rl, safety, atari, agent',
@@ -24,13 +24,11 @@ setuptools.setup(
         'chainer',
         'chainerrl',
         'numpy',
-        'PIL',
+        'Pillow',
         'gym',
         'gym[atari]',
-        'cv2',
-        'tensorflow',
-        'dill>=0.3.2',
-        'imageio',
-        'tqdm'
+        'cmake',
+        'opencv-python',
+        'tensorflow'
     ]
 )
