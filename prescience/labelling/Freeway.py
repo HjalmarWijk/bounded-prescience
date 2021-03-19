@@ -4,9 +4,10 @@ from prescience.labelling import Labeller
 
 
 class Hit(Labeller):
-    def __init__(self,env):
+    def __init__(self, env):
         self.first_frame = True
-        super().__init__(env) 
+        super().__init__(env)
+
     def reset(self):
         self.first_frame = True
 
@@ -29,7 +30,9 @@ class Hit(Labeller):
             return True
         else:
             return False
+
     def save(self):
         return self.first_frame
-    def restore(self,state):
+
+    def restore(self, state):
         self.first_frame = state

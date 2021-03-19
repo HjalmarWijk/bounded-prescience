@@ -56,7 +56,9 @@ class Fuel(Labeller):
             return True
         else:
             return False
+
     def save(self):
-        return (self.fuel_cir,self.lives_history)
-    def restore(self,state):
-        self.fuel_cur,self.lives_history = state
+        return (self.fuel_cir, self.lives_history)
+
+    def restore(self, state):
+        self.fuel_cur, self.lives_history = state

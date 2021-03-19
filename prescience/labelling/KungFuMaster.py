@@ -23,7 +23,9 @@ class Energy_Loss(Labeller):
                 return True
         else:
             return False
+
     def save(self):
         return self.energy_bar
-    def restore(self,state):
+
+    def restore(self, state):
         self.energy_bar = state

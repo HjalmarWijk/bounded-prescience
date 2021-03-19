@@ -2,12 +2,16 @@ import gym
 import time
 from collections import deque
 
+
 class Labeller():
     """Each labeller object corresponds to only one property"""
+
     def save(self):
         return None
-    def restore(self,state):
+
+    def restore(self, state):
         pass
+
     def reset(self):
         raise NotImplementedError
 

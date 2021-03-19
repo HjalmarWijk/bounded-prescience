@@ -1,3 +1,36 @@
-from setuptools import setup, find_packages
+import setuptools
 
-setup(name='prescience', version='0.0.1', packages=find_packages(), install_requires = ['gym', 'gym[atari]'])
+with open("README.md", "r", encoding="utf-8") as fh:
+    long_description = fh.read()
+
+setuptools.setup(
+    name='bounded-prescience',
+    version='0.0.1',
+    author="Hjalmar Wijk, Hosein Hasanbeig, Mirco Giacobbe, Daniel Kroening",
+    author_email="hjalmar.wijk@gmail.com, hosein.hasanbeig@icloud.com",
+    keywords='rl, safety, atari, agent',
+    long_description=long_description,
+    long_description_content_type="text/markdown",
+    url='https://github.com/HjalmarWijk/bounded-prescience',
+    description='Shielding Atari Games with Bounded Prescience',
+    packages=setuptools.find_packages(),
+    classifiers=[
+        "Programming Language :: Python :: 3",
+        "License :: OSI Approved :: BSD License",
+        "Operating System :: OS Independent",
+    ],
+    python_requires='>=3.5',
+    install_requires=[
+        'chainer',
+        'chainerrl',
+        'numpy',
+        'PIL',
+        'gym',
+        'gym[atari]',
+        'cv2',
+        'tensorflow',
+        'dill>=0.3.2',
+        'imageio',
+        'tqdm'
+    ]
+)
