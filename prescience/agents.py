@@ -21,11 +21,13 @@ from chainerrl.action_value import DiscreteActionValue
 from chainerrl.distribution import SoftmaxDistribution
 import chainer.functions as F
 import chainer.links as L
+
+
 class AtariAgent():
-    def action_order(self,obs):
+    def action_order(self, obs):
         if self.alg == "DQN-C" or self.alg == "Rainbow" or self.alg == "IQN":
             with chainer.using_config('train', False), chainer.no_backprop_mode():
-                action_value =\
+                action_value = \
                     self.agent._evaluate_model_and_update_recurrent_states([obs], test=True)
                 qvalues = action_value.q_values.array
                 return np.argsort(-qvalues[0]).astype(np.int32)
@@ -37,10 +39,12 @@ class AtariAgent():
         if self.alg == "ACER":
             statevar = np.expand_dims(self.agent.phi(obs), 0)
             action_distrib, _, _ = self.agent.model(statevar)
-            return np.argsort(action_distrib.all_prob.array,axis=1).astype(np.int32)
-    def act(self,obs):
+            return np.argsort(action_distrib.all_prob.array, axis=1).astype(np.int32)
+
+    def act(self, obs):
         return self.agent.act(obs)
-    def __init__(self,alg,env,model_path):
+
+    def __init__(self, alg, env, model_path):
         self.alg = alg
         seed = 0
         n_actions = gym.make(env).action_space.n
@@ -99,8 +103,8 @@ class AtariAgent():
             n_atoms = 51
             v_max = 10
             v_min = -10
-            model = DistributionalDuelingDQN(n_actions,n_atoms,v_min,v_max)
-            links.to_factorized_noisy(model,sigma_scale = 0.5)
+            model = DistributionalDuelingDQN(n_actions, n_atoms, v_min, v_max)
+            links.to_factorized_noisy(model, sigma_scale=0.5)
         if alg == "IQN":
             model = agents.iqn.ImplicitQuantileQFunction(
                 psi=chainerrl.links.Sequence(
@@ -130,49 +134,59 @@ class AtariAgent():
                 # The state of the model is reset again after drawing the graph
                 variables = misc.collect_variables([model(fake_obs)])
                 chainer.computational_graph.build_computational_graph(variables)
-        elif alg in ["Rainbow","DQN-C","C51","ACER","PPO"]:
-            variables = misc.collect_variables([model(np.zeros((4,84,84), dtype = np.float32)[None])])
+        elif alg in ["Rainbow", "DQN-C", "C51", "ACER", "PPO"]:
+            variables = misc.collect_variables([model(np.zeros((4, 84, 84), dtype=np.float32)[None])])
             chainer.computational_graph.build_computational_graph(variables)
         else:
-            fake_obs=np.zeros((4,84,84),dtype=np.float32)[None]
-            fake_taus = np.zeros(32, dtype = np.float32)[None]
+            fake_obs = np.zeros((4, 84, 84), dtype=np.float32)[None]
+            fake_taus = np.zeros(32, dtype=np.float32)[None]
             variables = misc.collect_variables([model(fake_obs)(fake_taus)])
+
         def phi(x):
             # Feature extractor
             return np.asarray(x, dtype=np.float32) / 255
+
         opt = optimizers.RMSpropGraves()
         opt.setup(model)
         rbuf = replay_buffer.ReplayBuffer(1)
         if alg == "IQN":
-            self.agent = agents.IQN(model,opt,rbuf,gpu=gpu,gamma=0.99,act_deterministically=True,explorer=None,replay_start_size = 1,minibatch_size = 1,target_update_interval=None,clip_delta=True,update_interval=4,phi=phi)
+            self.agent = agents.IQN(model, opt, rbuf, gpu=gpu, gamma=0.99, act_deterministically=True, explorer=None,
+                                    replay_start_size=1, minibatch_size=1, target_update_interval=None, clip_delta=True,
+                                    update_interval=4, phi=phi)
         if alg == "A3C":
-            self.agent = a3c.A3C(model, opt, t_max = 5, gamma = 0.99, phi=phi, act_deterministically = True)
+            self.agent = a3c.A3C(model, opt, t_max=5, gamma=0.99, phi=phi, act_deterministically=True)
         if alg == "Rainbow":
-            self.agent = agents.CategoricalDoubleDQN(model,opt,rbuf,gpu=gpu,gamma = 0.99,explorer=None,replay_start_size = 1,minibatch_size = 1,target_update_interval=None,clip_delta=True,update_interval=4,phi=phi)
+            self.agent = agents.CategoricalDoubleDQN(model, opt, rbuf, gpu=gpu, gamma=0.99, explorer=None,
+                                                     replay_start_size=1, minibatch_size=1, target_update_interval=None,
+                                                     clip_delta=True, update_interval=4, phi=phi)
         if alg == "DQN-C":
-            self.agent = agents.DQN(model,opt,rbuf,gpu=gpu,gamma = 0.99,explorer=None,replay_start_size = 1,minibatch_size = 1,target_update_interval=None,clip_delta=True,update_interval=4,phi=phi)
+            self.agent = agents.DQN(model, opt, rbuf, gpu=gpu, gamma=0.99, explorer=None, replay_start_size=1,
+                                    minibatch_size=1, target_update_interval=None, clip_delta=True, update_interval=4,
+                                    phi=phi)
         if alg == "C51":
             self.agent = agents.CategoricalDQN(
                 model, opt, rbuf, gpu=gpu, gamma=0.99,
                 explorer=None, replay_start_size=1,
-                minibatch_size = 1,
+                minibatch_size=1,
                 target_update_interval=None,
-                clip_delta = True,
+                clip_delta=True,
                 update_interval=4,
                 phi=phi,
             )
         if alg == "ACER":
             self.agent = agents.acer.ACER(model, opt, t_max=5, gamma=0.99,
-                replay_buffer=rbuf,
-                n_times_replay=4,
-                replay_start_size=1,
-                act_deterministically = True,
-                phi=phi
-            )
+                                          replay_buffer=rbuf,
+                                          n_times_replay=4,
+                                          replay_start_size=1,
+                                          act_deterministically=True,
+                                          phi=phi
+                                          )
         if alg == "PPO":
-            self.agent = agents.PPO(model, opt, gpu = gpu, phi = phi, update_interval = 4, minibatch_size = 1, clip_eps = 0.1, recurrent = False, act_deterministically = True)
-        self.agent.load(os.path.join(model_path,'chainer',alg,env.replace("NoFrameskip-v4",""),'final'))
-        
+            self.agent = agents.PPO(model, opt, gpu=gpu, phi=phi, update_interval=4, minibatch_size=1, clip_eps=0.1,
+                                    recurrent=False, act_deterministically=True)
+        self.agent.load(os.path.join(model_path, 'chainer', alg, env.replace("NoFrameskip-v4", ""), 'final'))
+
+
 class A3CFF(chainer.ChainList, a3c.A3CModel):
 
     def __init__(self, n_actions):
@@ -185,5 +199,3 @@ class A3CFF(chainer.ChainList, a3c.A3CModel):
     def pi_and_v(self, state):
         out = self.head(state)
         return self.pi(out), self.v(out)
-
-

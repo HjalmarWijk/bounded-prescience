@@ -2,10 +2,12 @@ import gym
 import numpy as np
 from prescience.labelling import Labeller
 
+
 class Out_Of_Bounds(Labeller):
-    def __init__(self,env):
+    def __init__(self, env):
         self.need_initial = True
-        super().__init__(env) 
+        super().__init__(env)
+
     def reset(self):
         self.need_initial = True
 
@@ -16,10 +18,12 @@ class Out_Of_Bounds(Labeller):
         else:
             return False
 
+
 class Shoot_Bf_Clear(Labeller):
-    def __init__(self,env):
+    def __init__(self, env):
         self.need_initial = True
         super().__init__(env)
+
     def reset(self):
         self.need_initial = True
 
@@ -37,8 +41,9 @@ class Shoot_Bf_Clear(Labeller):
         else:
             self.look_out_for_sbc = 0
             return False
-    def save(self):
-        return (self.need_initial,self.look_out_for_sbc)
-    def restore(self,state):
-        self.need_initial,self.look_out_for_sbc = state
 
+    def save(self):
+        return (self.need_initial, self.look_out_for_sbc)
+
+    def restore(self, state):
+        self.need_initial, self.look_out_for_sbc = state

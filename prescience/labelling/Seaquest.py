@@ -5,9 +5,10 @@ from collections import deque
 
 
 class Early_Surface(Labeller):
-    def __init__(self,env):
+    def __init__(self, env):
         self.first_frame = True
         super().__init__(env)
+
     def reset(self):
         self.first_frame = True
 
@@ -20,20 +21,24 @@ class Early_Surface(Labeller):
         observation = np.sum(obs, axis=2)
         # check for early surface
         if np.any(observation[46, :] == 708) and \
-            observation[186, 58] != 217:
+                observation[186, 58] != 217:
             return True
         else:
             return False
+
     def save(self):
         return self.first_frame
-    def restore(self,state):
+
+    def restore(self, state):
         self.first_frame = state
 
+
 class Out_Of_Oxygen(Labeller):
-    def __init__(self,env):
+    def __init__(self, env):
         self.first_frame = True
         self.bar_history = deque()
         super().__init__(env)
+
     def reset(self):
         self.first_frame = True
         self.bar_history = deque()
@@ -48,7 +53,7 @@ class Out_Of_Oxygen(Labeller):
 
         if len(self.bar_history) > 20:
             self.bar_history.popleft()
-        # create a unique color map of current frame
+            # create a unique color map of current frame
             observation = np.sum(obs, axis=2)
             if observation[170, 49] == 241 and sum(self.bar_history) > 0:
                 return True
@@ -56,7 +61,9 @@ class Out_Of_Oxygen(Labeller):
                 return False
         else:
             return False
+
     def save(self):
-        return (self.first_frame,self.bar_history)
-    def restore(self,state):
-        self.first_frame,self.bar_history = state
+        return (self.first_frame, self.bar_history)
+
+    def restore(self, state):
+        self.first_frame, self.bar_history = state

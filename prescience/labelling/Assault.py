@@ -28,7 +28,9 @@ class Overheat(Labeller):
             return True
         else:
             return False
+
     def save(self):
-        return (self.lives_history,self.over_heat_happened)
-    def restore(self,state):
-        self.lives_history,self.over_heat_happened = state
+        return (self.lives_history, self.over_heat_happened)
+
+    def restore(self, state):
+        self.lives_history, self.over_heat_happened = state

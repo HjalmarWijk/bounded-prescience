@@ -28,8 +28,7 @@ prop_map = {
         "no-enemy-ko": (Below_Reward, {'threshold': 99, 'count_neg': False})
     },
     "FishingDerby": {
-        "lose": (Below_Reward, {'threshold': -99, 'count_pos': False}),
-        "no-win": (Below_Reward, {'threshold': 99, 'count_neg': False})
+        "lose": (Below_Reward, {'threshold': 99, 'count_neg': False})
     },
     "BeamRider": {
         "death": (Death, {})

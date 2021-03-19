@@ -39,10 +39,13 @@ class Dynamite(Labeller):
             return True
         else:
             return False
+
     def save(self):
-        return (self.lives_history,self.dynamite_exploded,self.counter)
-    def restore(self,state):
-        self.lives_history,self.dynamite_exploded,self.counter = state
+        return (self.lives_history, self.dynamite_exploded, self.counter)
+
+    def restore(self, state):
+        self.lives_history, self.dynamite_exploded, self.counter = state
+
 
 class Out_Of_Power(Labeller):
     def __init__(self, env):

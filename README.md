@@ -41,8 +41,7 @@ pip3 install git+https://github.com/HjalmarWijk/bounded-prescience.git
 | DoubleDunk   | out-of-bounds  | Moves out of bounds                          | Shallow        |
 | DoubleDunk   | shoot-bf-clear | Losing ball due to shooting before clearing\* | Shallow        |
 | Enduro       | crash-car      | Crashing into another car                    |                |
-| FishingDerby | lose           | Losing to the opponent                       | Minimal        |
-| FishingDerby | no-win         | Not winning over the opponent                |                |
+| FishingDerby | lose           | Not winning over the opponent                |                |
 | Freeway      | hit            | Being hit by car                             |                |
 | Frostbite    | death          | Losing a life                                |                |
 | Frostbite    | freezing       | Losing a life from time running out          |                |

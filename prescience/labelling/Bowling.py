@@ -4,9 +4,10 @@ from prescience.labelling import Labeller
 
 
 class No_Hit(Labeller):
-    def __init__(self,env):
+    def __init__(self, env):
         self.need_initial = True
-        super().__init__(env) 
+        super().__init__(env)
+
     def reset(self):
         self.need_initial = True
 
@@ -26,15 +27,19 @@ class No_Hit(Labeller):
             return True
         else:
             return False
+
     def save(self):
-        return (self.need_initial,self.pins_initial_layout)
-    def restore(self,state):
-        self.need_initial,self.pins_initial_layout = state
+        return (self.need_initial, self.pins_initial_layout)
+
+    def restore(self, state):
+        self.need_initial, self.pins_initial_layout = state
+
 
 class No_Strike(Labeller):
-    def __init__(self,env):
+    def __init__(self, env):
         self.need_initial = False
         super().__init__(env)
+
     def reset(self):
         self.need_initial = False
 

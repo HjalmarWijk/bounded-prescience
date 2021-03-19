@@ -18,7 +18,9 @@ class Death(Labeller):
         else:
             self.current_lives = new_lives
             return False
+
     def save(self):
         return self.current_lives
-    def restore(self,state):
+
+    def restore(self, state):
         self.current_lives = state
