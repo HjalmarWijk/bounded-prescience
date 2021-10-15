@@ -1,5 +1,5 @@
 # bounded-prescience
-This repo contains code for the paper Shielding Atari Games with Bounded Prescience (https://arxiv.org/abs/2101.08153) by Mirco Giacobbe, Hosein Hasanbeig, Hjalmar Wijk and Daniel Kroening. In addition to replicating the experiments in the paper and the bounded prescience shield, the repo allows the creation of property-labelled versions of the standard Atari gym environments which can expose safety information for other agents and policies.
+This repo contains code for the paper Deep RL Does Not Learn to be Safe by Mirco Giacobbe, Hosein Hasanbeig, Hjalmar Wijk and Daniel Kroening. In addition to replicating the experiments in the paper and the bounded prescience shield, the repo allows the creation of property-labelled versions of the standard Atari gym environments which can expose safety information for other agents and policies.
 ## Installation
 The prescience package needs to be installed through pip:
 ```
@@ -69,18 +69,6 @@ The scripts chainer\_no\_shield.sh and atari\_zoo\_no\_shield.sh run all the age
 To check properties using prescience shielding use the --lookahead flag for check\_noops.py
 The shield scripts run this check for all algorithms, properties and shield depths up to 5.
 
-## Reference
-Please use this bibtex entry if you want to cite this repository in your publication:
-
-```
-@misc{bounded_prescience_repo,
-  author = {Mirco Giacobbe, Mohammadhosein Hasanbeig, Daniel Kroening, and Hjalmar Wijk},
-  title = {Shielding Atari Games with Bounded Prescience Code Repository},
-  year = {2020},
-  publisher = {GitHub},
-  journal = {GitHub repository},
-  howpublished = {\url{https://github.com/HjalmarWijk/bounded-prescience}},
-}
 ```
 
 ## License
